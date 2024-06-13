@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <br><br>
+    <div id="main" align="center" style="border: 10px blue solid; width: 50%;">
+        <br><br>
+        <form>
+            <select onChange="send_with_ajax(this.value);">
+                <option>Select</option>
+                <option value="SC">Science</option>
+                <option value="EC">Economics</option>
+                <option value="MT">Math</option>
+            </select>
+        </form>
+        <br><br>
+        <div align="left" id="update">
+            Result
+        </div>
+    </div>
+    <script>
+        function alertContents(httpRequest, the_type) {
+            if (httpRequest.readyState === 4) {
+                if (httpRequest.status === 200 || httpRequest.status === 0) {
+                    var ourXMLdata = httpRequest.responseXML;
+                    var ourEntries = ourXMLdata.getElementsByTagName('BOOK');
+                    var output = '<ol>';
+                    for (var i = 0; i < ourEntries.length; i++) {
+                        if (ourEntries[i].getAttribute("GR") === the_type) {
+                            output += '<li>';
+                            output += '<b>Title: ' + ourEntries[i].getElementsByTagName('NAME')[0].firstChild.nodeValue + '</b>';
+                            output += '</li>';
+                            output += '<li>';
+                            output += 'Price: ' + ourEntries[i].getElementsByTagName('PRICE')[0].firstChild.nodeValue;
+                            output += '</li>';
+                            output += '<li>';
+                            output += 'Pages: ' + ourEntries[i].getElementsByTagName('PAGE')[0].firstChild.nodeValue;
+                            output += '</li>';
+                            output += '<li>';
+                            output += 'Type: ' + ourEntries[i].getElementsByTagName('TYPE')[0].firstChild.nodeValue;
+                            output += '</li>';
+                        }
+                    }
+                    output += '</ol>';
+                    document.getElementById('update').innerHTML = output;
+                } else {
+                    document.getElementById('update').innerHTML = "<h2>Some error occurred</h2>";
+                }
+            }
+        }
+
+        function send_with_ajax(the_type) {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function () {
+                alertContents(httpRequest, the_type);
+            };
+            httpRequest.open("GET", "book-cat.xml", true);
+            httpRequest.send(null);
+        }
+    </script>
+</body>
+
+</html>

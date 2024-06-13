@@ -1,0 +1,26 @@
+<BOOKCATALOG>
+    <BOOK ID="23" GR="SC">
+        <NAME>Learn XML</NAME>
+        <PRICE>500</PRICE>
+        <PAGE>400</PAGE>
+        <TYPE>Ebook</TYPE>
+    </BOOK>
+    <BOOK ID="38" GR="EC">
+        <NAME>Learn Java</NAME>
+        <PRICE>700</PRICE>
+        <PAGE>500</PAGE>
+        <TYPE>Hardcover</TYPE>
+    </BOOK>
+    <BOOK ID="43" GR="MT">
+        <NAME>Learn HTML</NAME>
+        <PRICE>300</PRICE>
+        <PAGE>200</PAGE>
+        <TYPE>Ebook</TYPE>
+    </BOOK>
+    <BOOK ID="50" GR="SC">
+        <NAME>Learn Python</NAME>
+        <PRICE>500</PRICE>
+        <PAGE>400</PAGE>
+        <TYPE>Ebook</TYPE>
+    </BOOK>
+</BOOKCATALOG>
